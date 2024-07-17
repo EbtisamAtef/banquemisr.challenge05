@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "F0EB076A-CDA6-41FD-8924-37208FE24D59"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "819EACB0-4652-4323-9842-A57DDAD24500"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "getAsyncEvents()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "819EACB0-4652-4323-9842-A57DDAD24500 - 6fbfb1e8939b26c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "97">
+               </Location>
+               <Location
+                  uuid = "819EACB0-4652-4323-9842-A57DDAD24500 - e89db16fc4101bc1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "819EACB0-4652-4323-9842-A57DDAD24500 - f4fe17f4566e2c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "819EACB0-4652-4323-9842-A57DDAD24500 - 3e870947ee5b00f8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "134">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E8692D9D-B8CF-472E-80E0-70543A06F2AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getAsyncEvents()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E8692D9D-B8CF-472E-80E0-70543A06F2AB - f4fe17f4566e281"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "E8692D9D-B8CF-472E-80E0-70543A06F2AB - 3e870947ee5b00be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "E8692D9D-B8CF-472E-80E0-70543A06F2AB - 3e870947ee5b00be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "822">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A4148CB-9CE3-420E-8362-840A634C9A47"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "getAsyncEvents()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7A4148CB-9CE3-420E-8362-840A634C9A47 - f4fe17f4566e21c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "612">
+               </Location>
+               <Location
+                  uuid = "7A4148CB-9CE3-420E-8362-840A634C9A47 - 3e870947ee5b0023"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in banquemisr_challenge05.MoviesViewController.getAsyncEvents() -&gt; ()"
+                  moduleName = "banquemisr.challenge05"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/banquemisr.challenge05/banquemisr.challenge05/movies/moviesList/View/MoviesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "871">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

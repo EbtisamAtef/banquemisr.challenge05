@@ -12,7 +12,7 @@ public enum RequestMethod: String {
     case post = "POST"
 }
 
-public protocol EndpointProvider {
+public protocol EndPointProvider {
     
     var baseURL: String { get }
     var path: String { get }
@@ -25,7 +25,7 @@ public protocol EndpointProvider {
 
 }
 
-public extension EndpointProvider {
+public extension EndPointProvider {
     
     var queryItems: [URLQueryItem]? { nil }
     

@@ -26,7 +26,7 @@ class MockApiClient: HttpClientProtocol {
     }
 
     
-    func performRequest<T>(endpoint: EndpointProvider, responseModel: T.Type) async throws -> T where T: Decodable {
+    func performRequest<T>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T where T: Decodable {
         return loadJSON(filename: endpoint.mockFile!,
                         type: responseModel.self,
                         bundle: endpoint.bundle ?? Bundle(for: type(of: self)))

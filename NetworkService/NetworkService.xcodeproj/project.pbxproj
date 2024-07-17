@@ -11,7 +11,7 @@
 		046B98D92C46E221008EE218 /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B98CE2C46E220008EE218 /* NetworkService.framework */; };
 		046B98DE2C46E221008EE218 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98DD2C46E221008EE218 /* NetworkServiceTests.swift */; };
 		046B98DF2C46E221008EE218 /* NetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = 046B98D12C46E220008EE218 /* NetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		046B98ED2C46E291008EE218 /* EndpointProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98E82C46E28F008EE218 /* EndpointProvider.swift */; };
+		046B98ED2C46E291008EE218 /* EndPointProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98E82C46E28F008EE218 /* EndPointProvider.swift */; };
 		046B98EE2C46E291008EE218 /* ApiErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98E92C46E28F008EE218 /* ApiErrorModel.swift */; };
 		046B98EF2C46E291008EE218 /* MockApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98EA2C46E28F008EE218 /* MockApiClient.swift */; };
 		046B98F02C46E291008EE218 /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98EB2C46E290008EE218 /* ApiConfig.swift */; };
@@ -36,7 +36,7 @@
 		046B98D22C46E220008EE218 /* NetworkService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = NetworkService.docc; sourceTree = "<group>"; };
 		046B98D82C46E221008EE218 /* NetworkServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B98DD2C46E221008EE218 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
-		046B98E82C46E28F008EE218 /* EndpointProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointProvider.swift; sourceTree = "<group>"; };
+		046B98E82C46E28F008EE218 /* EndPointProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointProvider.swift; sourceTree = "<group>"; };
 		046B98E92C46E28F008EE218 /* ApiErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiErrorModel.swift; sourceTree = "<group>"; };
 		046B98EA2C46E28F008EE218 /* MockApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockApiClient.swift; sourceTree = "<group>"; };
 		046B98EB2C46E290008EE218 /* ApiConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 				046B98EC2C46E290008EE218 /* HttpClient.swift */,
 				046B98EB2C46E290008EE218 /* ApiConfig.swift */,
 				046B98E92C46E28F008EE218 /* ApiErrorModel.swift */,
-				046B98E82C46E28F008EE218 /* EndpointProvider.swift */,
+				046B98E82C46E28F008EE218 /* EndPointProvider.swift */,
 				046B98EA2C46E28F008EE218 /* MockApiClient.swift */,
 				046B98D12C46E220008EE218 /* NetworkService.h */,
 				046B98D22C46E220008EE218 /* NetworkService.docc */,
@@ -221,7 +221,7 @@
 				046B98D32C46E220008EE218 /* NetworkService.docc in Sources */,
 				046B98EF2C46E291008EE218 /* MockApiClient.swift in Sources */,
 				046B98EE2C46E291008EE218 /* ApiErrorModel.swift in Sources */,
-				046B98ED2C46E291008EE218 /* EndpointProvider.swift in Sources */,
+				046B98ED2C46E291008EE218 /* EndPointProvider.swift in Sources */,
 				046B98F12C46E291008EE218 /* HttpClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

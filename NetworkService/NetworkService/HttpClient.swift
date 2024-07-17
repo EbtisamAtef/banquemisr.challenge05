@@ -11,7 +11,7 @@ import Network
 
 
 public protocol HttpClientProtocol {
-    func performRequest<T: Decodable>(endpoint: EndpointProvider, responseModel: T.Type) async throws -> T
+    func performRequest<T: Decodable>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T
 }
 
 public final class HttpClient: HttpClientProtocol {
@@ -26,7 +26,7 @@ public final class HttpClient: HttpClientProtocol {
         return URLSession(configuration: configuration)
     }
     
-    public func performRequest<T: Decodable>(endpoint: EndpointProvider, responseModel: T.Type) async throws -> T {
+    public func performRequest<T: Decodable>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T {
         let connectivityStatus = await Reachability.checkNetworkConnectivity()
         if connectivityStatus.isConnected {
             do {

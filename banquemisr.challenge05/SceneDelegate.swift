@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NetworkService
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,7 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        let rootNavigationController = UINavigationController(rootViewController: MoviesViewController())
+        
+        let apiClient = HttpClient()
+        let repo = MovieRepository(apiClient: apiClient)
+        let useCase = MovieUseCase(movieRepo: repo)
+        let viewModel = MovieViewModel(usecase: useCase)
+        let controller = MoviesViewController(viewModel: viewModel)
+        
+        let rootNavigationController = UINavigationController(rootViewController: controller)
         window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
     }

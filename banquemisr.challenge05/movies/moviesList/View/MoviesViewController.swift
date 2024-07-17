@@ -10,7 +10,7 @@ import NetworkService
 
 class MoviesViewController: UIViewController {
     
-    var apiClient: ApiProtocol = ApiClient()
+    var apiClient: HttpClientProtocol = HttpClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +21,10 @@ class MoviesViewController: UIViewController {
         let endpoint = EventsEndpoints.getMovie
         Task {
             do {
-                let movie = try await apiClient.asyncRequest(endpoint: endpoint, responseModel: MovieModel.self)
-                print("Movie list is \(movie.results)")
+                let movie = try await apiClient.performRequest(endpoint: endpoint, responseModel: MovieModel.self)
+                print("Movie list is \(String(describing: movie.results))")
             } catch let error as ApiErrorModel{
-                print("error is \(error.status_message)")
+                print("error is \(String(describing: error.statusMessage))")
             }
         }
     }
@@ -61,12 +61,14 @@ enum EventsEndpoints: EndpointProvider {
 struct MovieModel: Codable {
     var page: Int?
     var results: [MovieListModel]?
-    
 }
 
 struct MovieListModel: Codable {
-    var original_title: Int?
-    var overview: Int?
+    var adult: Bool?
+    var genre_ids: [Int]?
+    var id, vote_count: Int?
+    var backdrop_path, original_language, original_title, overview, poster_path, release_date, title, video: String?
+    var popularity, vote_average: Double?
     
 }
 

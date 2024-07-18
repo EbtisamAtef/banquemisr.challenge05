@@ -8,6 +8,13 @@
 import Foundation
 import Combine
 import NetworkService
+import UIKit
+
+enum MovieType: Int{
+    case popular = 0
+    case playingNow = 1
+    case upcoming = 2
+}
 
 class MovieViewModel {
     
@@ -16,11 +23,18 @@ class MovieViewModel {
     @Published private var popularMovieList = [MovieListEntity]()
     @Published private var playingNowMovieList = [MovieListEntity]()
     @Published private var upcomingMovieList = [MovieListEntity]()
-    
+    @Published private var movietype: MovieType = .popular
+    @Published var loadedImage: Data? = nil
+
+
+    var coordinator: MovieCoordinator!
 
     init(usecase: MovieUseCaseContract) {
         self.usecase = usecase
-        
+    }
+    
+    func navigateToMovieDetails(movieDetails: MovieListEntity) {
+        coordinator.navigateToMovieDetails(with: movieDetails)
     }
     
 }
@@ -30,6 +44,10 @@ extension MovieViewModel: MovieViewModelInputType {
 }
 
 extension MovieViewModel: MovieViewModelOutputType {
+    var movieTypePublisher: AnyPublisher<MovieType, Never> {
+        $movietype
+            .eraseToAnyPublisher()
+    }
     
     var popularMovieListPublisher: AnyPublisher<[MovieListEntity], Never> {
         $popularMovieList
@@ -43,6 +61,11 @@ extension MovieViewModel: MovieViewModelOutputType {
     
     var upcomingMovieListPublisher: AnyPublisher<[MovieListEntity], Never> {
         $upcomingMovieList
+            .eraseToAnyPublisher()
+    }
+    
+    var loadedImagePublisher: AnyPublisher<Data?, Never> {
+        $loadedImage
             .eraseToAnyPublisher()
     }
     
@@ -80,6 +103,41 @@ extension MovieViewModel: MovieViewModelOutputType {
         }
     }
     
+    func loadImage(url: URL) {
+        Task {
+            do {
+                let data = try await usecase.loadImage(url: url)
+                //DispatchQueue.main.async {
+                    loadedImage = data
+                print("loaded Data", UIImage(data: loadedImage ?? Data()))
+                //}
+            } catch let error as ApiErrorModel{
+                print(error)
+            }
+        }
+    }
+    
+    func getMovieListCount() -> Int {
+        switch movietype {
+        case .popular: return popularMovieList.count
+        case .playingNow: return playingNowMovieList.count
+        case .upcoming: return upcomingMovieList.count
+        }
+    }
+    
+    func getMovieDetails(index: Int)-> MovieListEntity {
+        switch movietype {
+        case .popular: return popularMovieList[index]
+        case .playingNow: return playingNowMovieList[index]
+        case .upcoming: return upcomingMovieList[index]
+        }
+    }
+    
+    func setMovitype(_ type: MovieType) {
+        movietype = type
+    }
+    
+
     
 }
 

@@ -11,6 +11,7 @@ import NetworkService
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appCordinator: Coordinator!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,16 +22,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
+        appCordinator = MovieCoordinator(window: window)
+        appCordinator.start()
+//        let apiClient = HttpClient()
+//        let repo = MovieRepository(apiClient: apiClient)
+//        let useCase = MovieUseCase(movieRepo: repo)
+//        let viewModel = MovieViewModel(usecase: useCase)
+//        let controller = MoviesViewController(viewModel: viewModel)
         
-        let apiClient = HttpClient()
-        let repo = MovieRepository(apiClient: apiClient)
-        let useCase = MovieUseCase(movieRepo: repo)
-        let viewModel = MovieViewModel(usecase: useCase)
-        let controller = MoviesViewController(viewModel: viewModel)
-        
-        let rootNavigationController = UINavigationController(rootViewController: controller)
-        window.rootViewController = rootNavigationController
-        window.makeKeyAndVisible()
+       
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

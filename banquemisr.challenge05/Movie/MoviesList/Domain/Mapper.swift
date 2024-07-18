@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkService
 
 struct Mapper {
     
@@ -26,7 +27,7 @@ struct Mapper {
                             originalLanguage: movie.original_language,
                             originalTitle: movie.original_title,
                             overview: movie.overview,
-                            posterPath: movie.poster_path,
+                            posterPath: ApiConfig.shared.imageBaseUrl + (movie.poster_path ?? ""),
                             releaseDate: movie.release_date,
                             title: movie.title,
                             popularity: movie.popularity,

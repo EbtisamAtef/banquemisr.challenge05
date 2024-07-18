@@ -11,4 +11,6 @@ protocol MovieUseCaseContract {
     func getPopularMovies() async throws -> MovieEntity
     func getNowPlayingMovies() async throws -> MovieEntity
     func getUpcomingMovies() async throws -> MovieEntity
+    func loadImage(url: URL) async throws -> Data
 }
+

@@ -34,4 +34,8 @@ struct MovieUseCase: MovieUseCaseContract {
         return Mapper.converMovieDTO(model)
     }
     
+    func loadImage(url: URL) async throws -> Data {
+        return try await movieRepo.loadImage(url: url)
+    }
+    
 }

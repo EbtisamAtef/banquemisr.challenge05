@@ -12,9 +12,12 @@ import Network
 
 public protocol HttpClientProtocol {
     func performRequest<T: Decodable>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T
+    func loadImageData(from url: URL) async throws -> Data
+
 }
 
 public final class HttpClient: HttpClientProtocol {
+
     
     public init() {}
     
@@ -43,6 +46,26 @@ public final class HttpClient: HttpClientProtocol {
             )
         }
     }
+    
+    public func loadImageData(from url: URL) async throws -> Data {
+
+        do {
+            let request = URLRequest(url: url)
+            let (data, _) = try await URLSession.shared.data(for: request)
+            return data
+        } catch {
+            let apiError = ApiErrorModel(
+                statusCode: 0,
+                statusMessage: "falied to download image",
+                success: false
+            )
+
+            throw apiError
+        }
+
+    }
+    
+    
     
     private func handleResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
         guard let response = response as? HTTPURLResponse else {
@@ -78,6 +101,8 @@ public final class HttpClient: HttpClientProtocol {
             )
         }
     }
+    
+   
 }
 
 

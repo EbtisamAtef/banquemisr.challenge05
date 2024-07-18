@@ -30,6 +30,10 @@ struct MovieRepository: MovieContract {
     func getUpcomingMovies() async throws -> MovieDTO {
         let endpoint = MovieEndpoints.getUpcomingMovies
         return try await apiClient.performRequest(endpoint: endpoint, responseModel: MovieDTO.self)
-    }    
+    }
+    
+    func loadImage(url: URL) async throws -> Data  {
+        return try await apiClient.loadImageData(from: url)
+    }
     
 }

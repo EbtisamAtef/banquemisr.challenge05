@@ -9,11 +9,13 @@ import Foundation
 
 
 struct MovieEntity {
+    
     var page: Int?
     var results: [MovieListEntity]?
 }
 
 struct MovieListEntity {
+    
     var adult, video: Bool?
     var genreIds: [Int]?
     var id, voteCount: Int?
@@ -21,3 +23,5 @@ struct MovieListEntity {
     var popularity, voteAverage: Double?
     
 }
+
+

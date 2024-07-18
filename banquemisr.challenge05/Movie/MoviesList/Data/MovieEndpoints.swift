@@ -17,9 +17,9 @@ enum MovieEndpoints: EndPointProvider {
     
     var path: String {
         switch self {
-        case .getPopularMovies: return "popular"
-        case .getNowPlayingMovies: return "now_playing"
-        case .getUpcomingMovies: return "upcoming"
+        case .getPopularMovies: return "/popular"
+        case .getNowPlayingMovies: return "/now_playing"
+        case .getUpcomingMovies: return "/upcoming"
             
         }
     }

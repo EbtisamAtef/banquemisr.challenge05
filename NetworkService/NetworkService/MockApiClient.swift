@@ -8,28 +8,32 @@
 import Foundation
 
 
-class MockApiClient: HttpClientProtocol {
-    
-    private func loadJSON<T: Decodable>(filename: String, type: T.Type, bundle: Bundle) -> T {
-        guard let path = bundle.url(forResource: filename, withExtension: "json") else {
-            fatalError("Failed to load JSON")
-        }
-
-        do {
-            let data = try Data(contentsOf: path)
-            let decodedObject = try JSONDecoder().decode(type, from: data)
-
-            return decodedObject
-        } catch {
-            fatalError("Failed to decode loaded JSON")
-        }
-    }
-
-    
-    func performRequest<T>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T where T: Decodable {
-        return loadJSON(filename: endpoint.mockFile!,
-                        type: responseModel.self,
-                        bundle: endpoint.bundle ?? Bundle(for: type(of: self)))
-    }
-    
-}
+//class MockApiClient: HttpClientProtocol {
+//    func downloadImageData(from url: URL) async throws -> Data {
+//        
+//    }
+//    
+//    
+//    private func loadJSON<T: Decodable>(filename: String, type: T.Type, bundle: Bundle) -> T {
+//        guard let path = bundle.url(forResource: filename, withExtension: "json") else {
+//            fatalError("Failed to load JSON")
+//        }
+//
+//        do {
+//            let data = try Data(contentsOf: path)
+//            let decodedObject = try JSONDecoder().decode(type, from: data)
+//
+//            return decodedObject
+//        } catch {
+//            fatalError("Failed to decode loaded JSON")
+//        }
+//    }
+//
+//    
+//    func performRequest<T>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T where T: Decodable {
+//        return loadJSON(filename: endpoint.mockFile!,
+//                        type: responseModel.self,
+//                        bundle: endpoint.bundle ?? Bundle(for: type(of: self)))
+//    }
+//    
+//}

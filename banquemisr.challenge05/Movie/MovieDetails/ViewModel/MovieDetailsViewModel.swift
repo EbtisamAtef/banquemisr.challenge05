@@ -10,8 +10,10 @@ import Foundation
 class MovieDetailsViewModel {
     
     var movieDetails: MovieListEntity
+    var loadedImage: Data
 
-    init(movieDetails: MovieListEntity) {
+    init(movieDetails: MovieListEntity, loadedImage: Data) {
         self.movieDetails = movieDetails
+        self.loadedImage = loadedImage
     }
 }

@@ -8,8 +8,10 @@
 import UIKit
 
 struct MovieCoordinator: Coordinator {
+    
     var navigationController: UINavigationController
     var window: UIWindow
+    
     init(window: UIWindow) {
         self.window = window
         navigationController = UINavigationController()
@@ -22,8 +24,8 @@ struct MovieCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
     
-    func navigateToMovieDetails(with details: MovieListEntity) {
-        let viewModel = MovieDetailsViewModel(movieDetails: details) 
+    func navigateToMovieDetails(with details: MovieListEntity, loadedImage: Data) {
+        let viewModel = MovieDetailsViewModel(movieDetails: details, loadedImage: loadedImage) 
         let controller = MovieDetailsViewController(viewModel: viewModel)
         navigationController.pushViewController(controller, animated: true)
     }

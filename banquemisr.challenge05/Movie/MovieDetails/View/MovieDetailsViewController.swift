@@ -43,10 +43,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func setupMovieDetailsData() {
-        movieTitleLabel.text = viewModel.movieDetails.title
-        movieReleaseDateLabel.text = viewModel.movieDetails.releaseDate
-        movieVoteAverageLabel.text = "\(viewModel.movieDetails.voteAverage ?? 0)"
-        overviewLabel.text = viewModel.movieDetails.overview
+        movieTitleLabel.text = "Title : " + (viewModel.movieDetails.title ?? "")
+        movieReleaseDateLabel.text = "Release Date : " + (viewModel.movieDetails.releaseDate ?? "")
+        movieVoteAverageLabel.text = "Vote Average : " + "\(viewModel.movieDetails.voteAverage ?? 0.0)"
+        overviewLabel.text = "overview : " + (viewModel.movieDetails.overview ?? "")
+        movieImageView.image = UIImage(data: viewModel.loadedImage)
     }
 
 

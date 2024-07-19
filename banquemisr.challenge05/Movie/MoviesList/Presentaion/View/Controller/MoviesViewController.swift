@@ -113,7 +113,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetails = viewModel.getMovieDetails(index: indexPath.row)
-        viewModel.navigateToMovieDetails(movieDetails: movieDetails)
+        viewModel.navigateToMovieDetails(movieDetails: movieDetails, loadedImage: viewModel.loadedImage ?? Data())
     }
     
 }

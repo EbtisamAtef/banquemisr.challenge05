@@ -30,7 +30,7 @@ protocol MovieViewModelOutputType {
     func getMovieListCount() -> Int
     func setMovitype(_ type: MovieType)
     func getMovieDetails(index: Int)-> MovieListEntity
-    func navigateToMovieDetails(movieDetails: MovieListEntity)
+    func navigateToMovieDetails(movieDetails: MovieListEntity, loadedImage: Data)
     func loadImage(url: URL)
     
 

@@ -44,8 +44,8 @@ class MovieViewModel {
         self.usecase = usecase
     }
     
-    func navigateToMovieDetails(movieDetails: MovieListEntity) {
-        coordinator.navigateToMovieDetails(with: movieDetails)
+    func navigateToMovieDetails(movieDetails: MovieListEntity, loadedImage: Data) {
+        coordinator.navigateToMovieDetails(with: movieDetails, loadedImage: loadedImage)
     }
     
 }

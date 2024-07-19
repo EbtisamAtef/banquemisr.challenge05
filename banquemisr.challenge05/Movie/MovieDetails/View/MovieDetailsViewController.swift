@@ -47,7 +47,8 @@ class MovieDetailsViewController: UIViewController {
         movieReleaseDateLabel.text = "Release Date : " + (viewModel.movieDetails.releaseDate ?? "")
         movieVoteAverageLabel.text = "Vote Average : " + "\(viewModel.movieDetails.voteAverage ?? 0.0)"
         overviewLabel.text = "overview : " + (viewModel.movieDetails.overview ?? "")
-        movieImageView.image = UIImage(data: viewModel.loadedImage)
+        guard let urlData = viewModel.movieDetails.url else { return }
+        movieImageView.image = UIImage(data: urlData)
     }
 
 

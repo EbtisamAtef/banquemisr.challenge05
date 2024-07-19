@@ -24,8 +24,8 @@ struct MovieCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
     
-    func navigateToMovieDetails(with details: MovieListEntity, loadedImage: Data) {
-        let viewModel = MovieDetailsViewModel(movieDetails: details, loadedImage: loadedImage) 
+    func navigateToMovieDetails(with details: MovieListEntity) {
+        let viewModel = MovieDetailsViewModel(movieDetails: details) 
         let controller = MovieDetailsViewController(viewModel: viewModel)
         navigationController.pushViewController(controller, animated: true)
     }

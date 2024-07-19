@@ -121,23 +121,20 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: MovieTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         cell.selectionStyle = .none
         let movieDetails = viewModel.getMovieDetails(index: indexPath.row)
-        if let url = URL(string: movieDetails.posterPath ?? "") {
-            viewModel.loadImage(url: url)
-        }
-        cell.configureCell(data: movieDetails, imageData: viewModel.loadedImage ?? Data())
+        cell.configureCell(data: movieDetails)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movieDetails = viewModel.getMovieDetails(index: indexPath.row)
-        viewModel.navigateToMovieDetails(movieDetails: movieDetails, loadedImage: viewModel.loadedImage ?? Data())
+        viewModel.navigateToMovieDetails(movieDetails: movieDetails)
     }
     
 }
 
 extension MoviesViewController: DataTransferDelegate {
     func transferData(data: MovieType) {
-        viewModel.setMovitype(data)
+        viewModel.setupSelectedMovitype(data)
     }
     
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 enum MovieType: Int{
+    
     case popular = 0
     case playingNow = 1
     case upcoming = 2

@@ -20,19 +20,19 @@ class MovieViewModel {
     @Published private var playingNowMovieList = [MovieListEntity]()
     @Published private var upcomingMovieList = [MovieListEntity]()
     @Published private var movietype: MovieType = .popular
-    @Published var loadedImage: Data?
     @Published private var isLoading: Bool?
     @Published private var errorMessage: String?
-
-
+    
+    @Published var loadedImage: Data?
+    
     var coordinator: MovieCoordinator!
-
+    
     init(usecase: MovieUseCaseContract) {
         self.usecase = usecase
     }
     
-    func navigateToMovieDetails(movieDetails: MovieListEntity, loadedImage: Data) {
-        coordinator.navigateToMovieDetails(with: movieDetails, loadedImage: loadedImage)
+    func navigateToMovieDetails(movieDetails: MovieListEntity) {
+        coordinator.navigateToMovieDetails(with: movieDetails)
     }
     
 }
@@ -91,12 +91,19 @@ extension MovieViewModel: MovieViewModelOutputType {
         Task {
             do {
                 let movie = try await usecase.getPopularMovies()
-                popularMovieList = movie?.results ?? []
+                var movieResult = movie?.results ?? []
+                for i in 0..<movieResult.count {
+                    if let url = URL(string: movieResult[i].posterPath ?? "") {
+                        let data = try await usecase.loadImage(url: url)
+                        movieResult[i].url = data
+                    }
+                }
+                popularMovieList = movieResult
                 isLoading = false
             } catch let error as ApiErrorModel{
                 isLoading = false
                 errorMessage = error.statusMessage ?? "something went wrong try again"
-
+                
             }
         }
     }
@@ -105,7 +112,14 @@ extension MovieViewModel: MovieViewModelOutputType {
         Task {
             do {
                 let movie = try await usecase.getNowPlayingMovies()
-                playingNowMovieList = movie?.results ?? []
+                var movieResult = movie?.results ?? []
+                for i in 0..<movieResult.count {
+                    if let url = URL(string: movieResult[i].posterPath ?? "") {
+                        let data = try await usecase.loadImage(url: url)
+                        movieResult[i].url = data
+                    }
+                }
+                playingNowMovieList = movieResult
                 isLoading = false
                 
             } catch let error as ApiErrorModel{
@@ -119,27 +133,33 @@ extension MovieViewModel: MovieViewModelOutputType {
         Task {
             do {
                 let movie = try await usecase.getUpcomingMovies()
-                upcomingMovieList = movie?.results ?? []
+                var movieResult = movie?.results ?? []
+                for i in 0..<movieResult.count {
+                    if let url = URL(string: movieResult[i].posterPath ?? "") {
+                        let data = try await usecase.loadImage(url: url)
+                        movieResult[i].url = data
+                    }
+                }
+                upcomingMovieList = movieResult
                 isLoading = false
-                
-             } catch let error as ApiErrorModel{
-                 isLoading = false
-                 errorMessage = error.statusMessage ?? "something went wrong try again"
+            } catch let error as ApiErrorModel{
+                isLoading = false
+                errorMessage = error.statusMessage ?? "something went wrong try again"
             }
         }
     }
     
     func loadImage(url: URL) {
-        Task {
-            do {
-                let data = try await usecase.loadImage(url: url)
-               // DispatchQueue.main.async {
-                    loadedImage = data
-                //}
-            } catch let error as ApiErrorModel{
-                print(error)
-            }
-        }
+
+//        Task {
+//            do {
+//                let data = try await usecase.loadImage(url: url)
+//                loadedImage = data
+//
+//            } catch let error as ApiErrorModel{
+//                print(error)
+//            }
+//        }
     }
     
     func getMovieListCount() -> Int {
@@ -158,11 +178,10 @@ extension MovieViewModel: MovieViewModelOutputType {
         }
     }
     
-    func setMovitype(_ type: MovieType) {
+    func setupSelectedMovitype(_ type: MovieType) {
         movietype = type
     }
     
-
     
 }
 

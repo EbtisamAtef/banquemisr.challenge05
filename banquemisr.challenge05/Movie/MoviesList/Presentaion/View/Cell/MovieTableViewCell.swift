@@ -24,10 +24,11 @@ class MovieTableViewCell: UITableViewCell {
         containerView.layer.cornerRadius = 10
     }
     
-    func configureCell(data: MovieListEntity, imageData: Data) {
+    func configureCell(data: MovieListEntity) {
         movieTitleLabel.text = data.title
         movieReleaseDateLabel.text = data.releaseDate
-        movieImageView.image = UIImage(data: imageData)
+        guard let urlData = data.url else { return }
+        movieImageView.image = UIImage(data: urlData)
     }
 
    

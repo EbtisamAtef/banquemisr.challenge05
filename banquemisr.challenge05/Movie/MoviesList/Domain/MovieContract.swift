@@ -12,6 +12,4 @@ protocol MovieContract {
     func getNowPlayingMovies() async throws -> MovieDTO
     func getUpcomingMovies() async throws -> MovieDTO
     func loadImage(url: URL) async throws -> Data
-
-
 }

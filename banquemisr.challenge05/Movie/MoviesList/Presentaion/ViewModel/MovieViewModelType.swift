@@ -12,7 +12,6 @@ typealias MovieViewModelType = MovieViewModelInputType & MovieViewModelOutputTyp
 
 protocol MovieViewModelInputType {}
 
-
 protocol MovieViewModelOutputType {
     
     var popularMovieListPublisher: AnyPublisher<[MovieListEntity], Never> { get }
@@ -30,9 +29,9 @@ protocol MovieViewModelOutputType {
     func getNowPlayingMovies()
     func getUpcomingMovies()
     func getMovieListCount() -> Int
-    func setMovitype(_ type: MovieType)
+    func setupSelectedMovitype(_ type: MovieType)
     func getMovieDetails(index: Int)-> MovieListEntity
-    func navigateToMovieDetails(movieDetails: MovieListEntity, loadedImage: Data)
+    func navigateToMovieDetails(movieDetails: MovieListEntity)
     func loadImage(url: URL)
     
 

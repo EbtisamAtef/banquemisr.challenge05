@@ -35,7 +35,6 @@ class MovieDetailsViewController: UIViewController {
     private func setup() {
         setupAppearance()
         setupMovieDetailsData()
-
     }
     
     private func setupAppearance() {

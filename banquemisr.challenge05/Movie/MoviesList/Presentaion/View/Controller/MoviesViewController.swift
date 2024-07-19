@@ -54,11 +54,7 @@ class MoviesViewController: UIViewController {
             .receive(on:DispatchQueue.main)
             .sink { [weak self] movieType in
                 guard let self else {return}
-                switch movieType {
-                case .popular: viewModel.getPopularMovies()
-                case .playingNow: viewModel.getNowPlayingMovies()
-                case .upcoming: viewModel.getUpcomingMovies()
-                }
+                viewModel.featchMovieType()
             }
             .store(in: &cancellable)
         

@@ -23,7 +23,7 @@ protocol MovieViewModelOutputType {
     var loadedImage: Data? { get }
 
     
-
+    func featchMovieType()
     func getPopularMovies()
     func getNowPlayingMovies()
     func getUpcomingMovies()
@@ -32,5 +32,6 @@ protocol MovieViewModelOutputType {
     func getMovieDetails(index: Int)-> MovieListEntity
     func navigateToMovieDetails(movieDetails: MovieListEntity)
     func loadImage(url: URL)
+    
 
 }

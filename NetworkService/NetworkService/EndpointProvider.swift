@@ -56,7 +56,7 @@ public extension EndPointProvider {
 
         }
         
-        var urlRequest = URLRequest(url: url)
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         urlRequest.httpMethod = method.rawValue
         
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")

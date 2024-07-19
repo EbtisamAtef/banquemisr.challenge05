@@ -8,14 +8,14 @@
 import Foundation
 import Network
 
-class Reachability {
+public class Reachability {
     
-    struct NetworkStatus {
-        var isConnected: Bool
-        var isExpensive: Bool
+    public struct NetworkStatus {
+        public var isConnected: Bool
+        public var isExpensive: Bool
     }
     
-    static func checkNetworkConnectivity() async -> NetworkStatus {
+    public static func checkNetworkConnectivity() async -> NetworkStatus {
         return await withCheckedContinuation { continuation in
             let monitor = NWPathMonitor()
             let queue = DispatchQueue.global(qos: .background)

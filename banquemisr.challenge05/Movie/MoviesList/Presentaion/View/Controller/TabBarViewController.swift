@@ -35,7 +35,7 @@ class TabBarViewController: UITabBarController {
     // MARK: - Methods
     
     private func setup() {
-        title = "Popular"
+        title = MovieType.popular.title
         setControllers()
         setTabBarItemsTitle()
         setupAppearnce()
@@ -83,6 +83,7 @@ class TabBarViewController: UITabBarController {
 extension TabBarViewController : UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let selectedTabBarItem = MovieType(rawValue: tabBarController.selectedIndex) ?? .popular
+        title = selectedTabBarItem.title
         if let dataTransfer = viewController as? DataTransferDelegate {
             dataTransfer.transferData(data: selectedTabBarItem)
         }

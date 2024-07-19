@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkService
 
 struct MovieUseCase: MovieUseCaseContract {
     
@@ -15,23 +16,50 @@ struct MovieUseCase: MovieUseCaseContract {
         self.movieRepo = movieRepo
     }
     
-    func getPopularMovies() async throws -> MovieEntity {
+    func getPopularMovies() async throws -> MovieEntity? {
+        let connectivityStatus = await Reachability.checkNetworkConnectivity()
+        if connectivityStatus.isConnected {
             let model = try await movieRepo.getPopularMovies()
+            CacheManager.shared.saveToFile(model, fileName: "popular-Movies.json")
             return Mapper.converMovieDTO(model)
+        }else {
+            guard let retrievedData: MovieDTO = CacheManager.shared.retrieveFromFile(fileName: "playing-now-Movies.json", as: MovieDTO.self) else {
+                return nil
+            }
+            return Mapper.converMovieDTO(retrievedData)
+        }
     }
     
-    func getNowPlayingMovies() async throws -> MovieEntity {
-        let model = try await movieRepo.getNowPlayingMovies()
-        return Mapper.converMovieDTO(model)    }
+    func getNowPlayingMovies() async throws -> MovieEntity? {
+        let connectivityStatus = await Reachability.checkNetworkConnectivity()
+        if connectivityStatus.isConnected {
+            let model = try await movieRepo.getNowPlayingMovies()
+            CacheManager.shared.saveToFile(model, fileName: "playing-now-Movies.json")
+            return Mapper.converMovieDTO(model)
+            
+        }else {
+            guard let retrievedData: MovieDTO = CacheManager.shared.retrieveFromFile(fileName: "playing-now-Movies.json", as: MovieDTO.self) else {
+                return nil
+            }
+            return Mapper.converMovieDTO(retrievedData)
+        }
+        
+    }
     
-    func getUpcomingMovies() async throws -> MovieEntity {
-//        if connectivityStatus.isConnected {
-//            // from api
-//        }else {
-//            // from caching
-//        }
-        let model = try await movieRepo.getUpcomingMovies()
-        return Mapper.converMovieDTO(model)
+    func getUpcomingMovies() async throws -> MovieEntity? {
+        let connectivityStatus = await Reachability.checkNetworkConnectivity()
+        if connectivityStatus.isConnected {
+            let model = try await movieRepo.getUpcomingMovies()
+            CacheManager.shared.saveToFile(model, fileName: "upcoming-Movies.json")
+            return Mapper.converMovieDTO(model)
+            
+        }else {
+            guard let retrievedData: MovieDTO = CacheManager.shared.retrieveFromFile(fileName: "upcoming-Movies.json", as: MovieDTO.self) else {
+                return nil
+            }
+            return Mapper.converMovieDTO(retrievedData)
+            
+        }
     }
     
     func loadImage(url: URL) async throws -> Data {

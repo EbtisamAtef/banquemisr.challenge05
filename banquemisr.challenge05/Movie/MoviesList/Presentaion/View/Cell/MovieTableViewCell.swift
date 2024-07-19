@@ -20,6 +20,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     private func setupAppearance() {
+        movieImageView.layer.cornerRadius = 10
         containerView.layer.cornerRadius = 10
     }
     

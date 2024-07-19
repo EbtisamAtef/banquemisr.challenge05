@@ -14,6 +14,17 @@ enum MovieType: Int{
     case popular = 0
     case playingNow = 1
     case upcoming = 2
+    
+    var title: String {
+        switch self {
+        case .popular:
+            return "Popular Movies"
+        case .playingNow:
+            return "Playing Now Movies"
+        case .upcoming:
+            return "Upcoming  Movies"
+        }
+    }
 }
 
 class MovieViewModel {
@@ -69,11 +80,19 @@ extension MovieViewModel: MovieViewModelOutputType {
             .eraseToAnyPublisher()
     }
     
+    func featchMovieType() {
+        switch movietype {
+        case .popular: getPopularMovies()
+        case .playingNow: getNowPlayingMovies()
+        case .upcoming: getUpcomingMovies()
+        }
+    }
+    
     func getPopularMovies() {
         Task {
             do {
                 let movie = try await usecase.getPopularMovies()
-                popularMovieList = movie.results ?? []
+                popularMovieList = movie?.results ?? []
             } catch let error as ApiErrorModel{
                 print(error)
 
@@ -85,7 +104,7 @@ extension MovieViewModel: MovieViewModelOutputType {
         Task {
             do {
                 let movie = try await usecase.getNowPlayingMovies()
-                playingNowMovieList = movie.results ?? []
+                playingNowMovieList = movie?.results ?? []
             } catch let error as ApiErrorModel{
                 print(error)
             }
@@ -96,7 +115,7 @@ extension MovieViewModel: MovieViewModelOutputType {
         Task {
             do {
                 let movie = try await usecase.getUpcomingMovies()
-                upcomingMovieList = movie.results ?? []
+                upcomingMovieList = movie?.results ?? []
              } catch let error as ApiErrorModel{
                  print(error)
             }
@@ -109,7 +128,6 @@ extension MovieViewModel: MovieViewModelOutputType {
                 let data = try await usecase.loadImage(url: url)
                 //DispatchQueue.main.async {
                     loadedImage = data
-                print("loaded Data", UIImage(data: loadedImage ?? Data()))
                 //}
             } catch let error as ApiErrorModel{
                 print(error)

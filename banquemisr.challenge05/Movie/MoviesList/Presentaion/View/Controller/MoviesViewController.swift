@@ -85,8 +85,8 @@ class MoviesViewController: BaseViewController {
         
         viewModel.popularMovieListPublisher
             .receive(on:DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self else {return}
+            .sink { [weak self] movies in
+                guard let self  else {return}
                 movieTableView.reloadData()
             }
             .store(in: &cancellable)

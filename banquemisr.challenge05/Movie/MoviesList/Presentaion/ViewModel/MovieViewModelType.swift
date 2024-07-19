@@ -18,7 +18,6 @@ protocol MovieViewModelOutputType {
     var playingNowMovieListPublisher: AnyPublisher<[MovieListEntity], Never> { get }
     var upcomingMovieListPublisher: AnyPublisher<[MovieListEntity], Never> { get }
     var movieTypePublisher: AnyPublisher<MovieType, Never> { get }
-    var loadedImagePublisher: AnyPublisher<Data?, Never> { get }
     var isLoadingPublisher: AnyPublisher<Bool?, Never> { get }
     var errorMessagePublisher: AnyPublisher<String?, Never> { get }
 
@@ -31,7 +30,6 @@ protocol MovieViewModelOutputType {
     func setupSelectedMovitype(_ type: MovieType)
     func getMovieDetails(index: Int)-> MovieListEntity
     func navigateToMovieDetails(movieDetails: MovieListEntity)
-    func loadImage(url: URL)
     
 
 }

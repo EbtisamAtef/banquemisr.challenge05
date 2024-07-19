@@ -71,14 +71,11 @@ class TabBarViewController: UITabBarController {
         let apiClient = HttpClient()
         let repo = MovieRepository(apiClient: apiClient)
         let useCase = MovieUseCase(movieRepo: repo)
-        let viewModel = MovieViewModel(usecase: useCase)
-        viewModel.coordinator = coordinator
+        let viewModel = MovieViewModel(usecase: useCase, coordinator: coordinator)
         let controller = MoviesViewController(viewModel: viewModel)
         return controller
     }
 }
-
-
 
 extension TabBarViewController : UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

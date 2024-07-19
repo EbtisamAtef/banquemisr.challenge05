@@ -18,10 +18,13 @@ struct MovieUseCase: MovieUseCaseContract {
     
     func getPopularMovies() async throws -> MovieEntity? {
         let connectivityStatus = await Reachability.checkNetworkConnectivity()
+        
         if connectivityStatus.isConnected {
+            
             let model = try await movieRepo.getPopularMovies()
             saveMovieData(from: model, fileName: "popular-Movies.json")
             return Mapper.converMovieDTO(model)
+            
         }else {
             guard let retrievedData: MovieDTO = CacheManager.shared.retrieveFromFile(fileName: "popular-Movies.json", as: MovieDTO.self) else {
                 return nil

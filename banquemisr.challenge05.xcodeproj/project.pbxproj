@@ -28,9 +28,6 @@
 		0407ED982C4977C300C714E9 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407ED972C4977C300C714E9 /* Coordinator.swift */; };
 		0407ED9A2C49781300C714E9 /* MovieCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407ED992C49781300C714E9 /* MovieCoordinator.swift */; };
 		0407ED9D2C49D97100C714E9 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407ED9C2C49D97100C714E9 /* CacheManager.swift */; };
-		0407EDA52C49E5C200C714E9 /* upcoming-Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0407EDA42C49E5C200C714E9 /* upcoming-Movies.json */; };
-		0407EDA72C49E69100C714E9 /* playing-now-movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0407EDA62C49E69100C714E9 /* playing-now-movies.json */; };
-		0407EDA92C49E6AA00C714E9 /* popular-movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0407EDA82C49E6AA00C714E9 /* popular-movies.json */; };
 		0407EDAB2C49F6AF00C714E9 /* MovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407EDAA2C49F6AF00C714E9 /* MovieType.swift */; };
 		0407EDAD2C4A020E00C714E9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407EDAC2C4A020E00C714E9 /* BaseViewController.swift */; };
 		046B98592C46CE6F008EE218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98582C46CE6F008EE218 /* AppDelegate.swift */; };
@@ -476,13 +473,10 @@
 			files = (
 				046B98682C46CE78008EE218 /* LaunchScreen.storyboard in Resources */,
 				0407ED872C48969C00C714E9 /* MovieTableViewCell.xib in Resources */,
-				0407EDA92C49E6AA00C714E9 /* popular-movies.json in Resources */,
-				0407EDA52C49E5C200C714E9 /* upcoming-Movies.json in Resources */,
 				046B98652C46CE78008EE218 /* Assets.xcassets in Resources */,
 				046B98602C46CE6F008EE218 /* Main.storyboard in Resources */,
 				0407ED932C496E7A00C714E9 /* MovieDetailsViewController.xib in Resources */,
 				046B98B72C46D0C9008EE218 /* MoviesViewController.xib in Resources */,
-				0407EDA72C49E69100C714E9 /* playing-now-movies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

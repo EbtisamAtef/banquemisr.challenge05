@@ -16,23 +16,53 @@ class MovieViewModel {
     
     private var usecase: MovieUseCaseContract
     
-    @Published private var popularMovieList = [MovieListEntity]()
-    @Published private var playingNowMovieList = [MovieListEntity]()
-    @Published private var upcomingMovieList = [MovieListEntity]()
+    @Published private var popularMovieList: [MovieListEntity] = []
+    @Published private var playingNowMovieList: [MovieListEntity] = []
+    @Published private var upcomingMovieList: [MovieListEntity] = []
     @Published private var movietype: MovieType = .popular
     @Published private var isLoading: Bool?
     @Published private var errorMessage: String?
     
-    @Published var loadedImage: Data?
+        
+    private let coordinator: MovieCoordinator
     
-    var coordinator: MovieCoordinator!
-    
-    init(usecase: MovieUseCaseContract) {
+    init(usecase: MovieUseCaseContract, coordinator: MovieCoordinator) {
         self.usecase = usecase
+        self.coordinator = coordinator
     }
     
     func navigateToMovieDetails(movieDetails: MovieListEntity) {
         coordinator.navigateToMovieDetails(with: movieDetails)
+    }
+    
+    private func fetchMovies(
+        fetch:  @escaping () async throws -> MovieEntity?,
+        updateList: @escaping ([MovieListEntity]) -> Void
+    ) {
+        Task {
+            isLoading = true
+            do {
+                let movieEntity = try await fetch()
+                var movieResults = movieEntity?.results ?? []
+                
+                for index in 0..<movieResults.count {
+                    if let posterPath = movieResults[index].posterPath, let url = URL(string: posterPath) {
+                        do {
+                            let imageData = try await usecase.loadImage(url: url)
+                            movieResults[index].url = imageData
+                        } catch {
+                            print("Failed to load image for \(posterPath)")
+                        }
+                    }
+                }
+                updateList(movieResults)
+                isLoading = false
+
+            } catch let error as ApiErrorModel {
+                isLoading = false
+                errorMessage = error.statusMessage ?? "Something went wrong, try again."
+            }
+        }
     }
     
 }
@@ -73,11 +103,6 @@ extension MovieViewModel: MovieViewModelOutputType {
             .eraseToAnyPublisher()
     }
     
-    var loadedImagePublisher: AnyPublisher<Data?, Never> {
-        $loadedImage
-            .eraseToAnyPublisher()
-    }
-    
     func featchMovieType() {
         isLoading = true
         switch movietype {
@@ -86,60 +111,29 @@ extension MovieViewModel: MovieViewModelOutputType {
         case .upcoming: getUpcomingMovies()
         }
     }
-    
-    // Generic method to fetch movies and update lists
-    private func fetchMovies(
-        fetch:  @escaping () async throws -> MovieEntity?,
-        updateList: @escaping ([MovieListEntity]) -> Void
-    ) {
-        Task {
-            isLoading = true
-            do {
-                let movieDTO = try await fetch()
-                var movieResults = movieDTO?.results ?? []
-                
-                // Load images for each movie
-                for index in 0..<movieResults.count {
-                    if let posterPath = movieResults[index].posterPath, let url = URL(string: posterPath) {
-                        do {
-                            let imageData = try await usecase.loadImage(url: url)
-                            movieResults[index].url = imageData
-                        } catch {
-                            print("Failed to load image for \(posterPath)")
-                        }
-                    }
-                }
-                
-                // Update the list with the fetched and processed data
-                updateList(movieResults)
-                
-                isLoading = false
-
-            } catch let error as ApiErrorModel {
-                isLoading = false
-                errorMessage = error.statusMessage ?? "Something went wrong, try again."
-            }
-        }
-    }
+     
 
     func getPopularMovies() {
         fetchMovies(
-            fetch: { try await self.usecase.getPopularMovies() },
-            updateList: { [weak self] results in self?.popularMovieList = results }
+            fetch: { [weak self] in try await self?.usecase.getPopularMovies() },
+            updateList: { results in self.popularMovieList = results
+            }
         )
     }
 
     func getNowPlayingMovies() {
         fetchMovies(
-            fetch: { try await self.usecase.getNowPlayingMovies() },
-            updateList: { [weak self] results in self?.playingNowMovieList = results }
+            fetch: { [weak self] in try await self?.usecase.getNowPlayingMovies() },
+            updateList: { results in self.playingNowMovieList = results
+            }
         )
     }
 
     func getUpcomingMovies() {
         fetchMovies(
-            fetch: { try await self.usecase.getUpcomingMovies() },
-            updateList: { [weak self] results in self?.upcomingMovieList = results }
+            fetch: { [weak self] in try await self?.usecase.getUpcomingMovies() },
+            updateList: { results in self.upcomingMovieList = results
+            }
         )
     }
         

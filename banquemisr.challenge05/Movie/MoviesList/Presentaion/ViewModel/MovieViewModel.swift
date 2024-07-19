@@ -87,81 +87,62 @@ extension MovieViewModel: MovieViewModelOutputType {
         }
     }
     
-    func getPopularMovies() {
+    // Generic method to fetch movies and update lists
+    private func fetchMovies(
+        fetch:  @escaping () async throws -> MovieEntity?,
+        updateList: @escaping ([MovieListEntity]) -> Void
+    ) {
         Task {
+            isLoading = true
             do {
-                let movie = try await usecase.getPopularMovies()
-                var movieResult = movie?.results ?? []
-                for i in 0..<movieResult.count {
-                    if let url = URL(string: movieResult[i].posterPath ?? "") {
-                        let data = try await usecase.loadImage(url: url)
-                        movieResult[i].url = data
-                    }
-                }
-                popularMovieList = movieResult
-                isLoading = false
-            } catch let error as ApiErrorModel{
-                isLoading = false
-                errorMessage = error.statusMessage ?? "something went wrong try again"
+                let movieDTO = try await fetch()
+                var movieResults = movieDTO?.results ?? []
                 
-            }
-        }
-    }
-    
-    func getNowPlayingMovies() {
-        Task {
-            do {
-                let movie = try await usecase.getNowPlayingMovies()
-                var movieResult = movie?.results ?? []
-                for i in 0..<movieResult.count {
-                    if let url = URL(string: movieResult[i].posterPath ?? "") {
-                        let data = try await usecase.loadImage(url: url)
-                        movieResult[i].url = data
+                // Load images for each movie
+                for index in 0..<movieResults.count {
+                    if let posterPath = movieResults[index].posterPath, let url = URL(string: posterPath) {
+                        do {
+                            let imageData = try await usecase.loadImage(url: url)
+                            movieResults[index].url = imageData
+                        } catch {
+                            print("Failed to load image for \(posterPath)")
+                        }
                     }
                 }
-                playingNowMovieList = movieResult
-                isLoading = false
                 
-            } catch let error as ApiErrorModel{
+                // Update the list with the fetched and processed data
+                updateList(movieResults)
+                
                 isLoading = false
-                errorMessage = error.statusMessage ?? "something went wrong try again"
-            }
-        }
-    }
-    
-    func getUpcomingMovies() {
-        Task {
-            do {
-                let movie = try await usecase.getUpcomingMovies()
-                var movieResult = movie?.results ?? []
-                for i in 0..<movieResult.count {
-                    if let url = URL(string: movieResult[i].posterPath ?? "") {
-                        let data = try await usecase.loadImage(url: url)
-                        movieResult[i].url = data
-                    }
-                }
-                upcomingMovieList = movieResult
-                isLoading = false
-            } catch let error as ApiErrorModel{
-                isLoading = false
-                errorMessage = error.statusMessage ?? "something went wrong try again"
-            }
-        }
-    }
-    
-    func loadImage(url: URL) {
 
-//        Task {
-//            do {
-//                let data = try await usecase.loadImage(url: url)
-//                loadedImage = data
-//
-//            } catch let error as ApiErrorModel{
-//                print(error)
-//            }
-//        }
+            } catch let error as ApiErrorModel {
+                isLoading = false
+                errorMessage = error.statusMessage ?? "Something went wrong, try again."
+            }
+        }
     }
-    
+
+    func getPopularMovies() {
+        fetchMovies(
+            fetch: { try await self.usecase.getPopularMovies() },
+            updateList: { [weak self] results in self?.popularMovieList = results }
+        )
+    }
+
+    func getNowPlayingMovies() {
+        fetchMovies(
+            fetch: { try await self.usecase.getNowPlayingMovies() },
+            updateList: { [weak self] results in self?.playingNowMovieList = results }
+        )
+    }
+
+    func getUpcomingMovies() {
+        fetchMovies(
+            fetch: { try await self.usecase.getUpcomingMovies() },
+            updateList: { [weak self] results in self?.upcomingMovieList = results }
+        )
+    }
+        
     func getMovieListCount() -> Int {
         switch movietype {
         case .popular: return popularMovieList.count

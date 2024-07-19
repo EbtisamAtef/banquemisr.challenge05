@@ -21,7 +21,6 @@ protocol MovieViewModelOutputType {
     var loadedImagePublisher: AnyPublisher<Data?, Never> { get }
     var isLoadingPublisher: AnyPublisher<Bool?, Never> { get }
     var errorMessagePublisher: AnyPublisher<String?, Never> { get }
-    var loadedImage: Data? { get }
 
     
     func featchMovieType()

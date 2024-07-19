@@ -32,6 +32,7 @@
 		0407EDA72C49E69100C714E9 /* playing-now-movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0407EDA62C49E69100C714E9 /* playing-now-movies.json */; };
 		0407EDA92C49E6AA00C714E9 /* popular-movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 0407EDA82C49E6AA00C714E9 /* popular-movies.json */; };
 		0407EDAB2C49F6AF00C714E9 /* MovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407EDAA2C49F6AF00C714E9 /* MovieType.swift */; };
+		0407EDAD2C4A020E00C714E9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407EDAC2C4A020E00C714E9 /* BaseViewController.swift */; };
 		046B98592C46CE6F008EE218 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98582C46CE6F008EE218 /* AppDelegate.swift */; };
 		046B985B2C46CE6F008EE218 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B985A2C46CE6F008EE218 /* SceneDelegate.swift */; };
 		046B985D2C46CE6F008EE218 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B985C2C46CE6F008EE218 /* ViewController.swift */; };
@@ -105,6 +106,7 @@
 		0407EDA62C49E69100C714E9 /* playing-now-movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "playing-now-movies.json"; sourceTree = "<group>"; };
 		0407EDA82C49E6AA00C714E9 /* popular-movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "popular-movies.json"; sourceTree = "<group>"; };
 		0407EDAA2C49F6AF00C714E9 /* MovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieType.swift; sourceTree = "<group>"; };
+		0407EDAC2C4A020E00C714E9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		046B98552C46CE6F008EE218 /* banquemisr.challenge05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = banquemisr.challenge05.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B98582C46CE6F008EE218 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046B985A2C46CE6F008EE218 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				0407ED892C4898F000C714E9 /* Extenssion */,
+				0407EDAC2C4A020E00C714E9 /* BaseViewController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				0407ED7D2C48661200C714E9 /* Mapper.swift in Sources */,
 				0407ED8B2C48990000C714E9 /* UIView+extension.swift in Sources */,
 				0407ED6D2C48608A00C714E9 /* MovieEndpoints.swift in Sources */,
+				0407EDAD2C4A020E00C714E9 /* BaseViewController.swift in Sources */,
 				0407ED752C4861AB00C714E9 /* MovieUseCaseContract.swift in Sources */,
 				0407ED9D2C49D97100C714E9 /* CacheManager.swift in Sources */,
 				046B98632C46CE6F008EE218 /* banquemisr_challenge05.xcdatamodeld in Sources */,

@@ -8,13 +8,12 @@
 import UIKit
 import Combine
 
-class MoviesViewController: UIViewController {
+class MoviesViewController: BaseViewController {
     
     @IBOutlet private weak var movieTableView: UITableView!
     
     let viewModel: MovieViewModelType
     private var cancellable = Set<AnyCancellable>()
-    private var activityIndicator: UIActivityIndicatorView!
 
     
     init(viewModel: MovieViewModelType) {
@@ -60,10 +59,18 @@ class MoviesViewController: UIViewController {
     
     private func bindViewModel() {
         
+        viewModel.errorMessagePublisher
+            .receive(on:DispatchQueue.main)
+            .sink { [weak self] message in
+                guard let self , let message else {return}
+                showErrorAlert(on: self, message: message)
+            }
+            .store(in: &cancellable)
+        
         viewModel.isLoadingPublisher
             .receive(on:DispatchQueue.main)
             .sink { [weak self] isLoading in
-                guard let self else {return}
+                guard let self, let isLoading else {return}
                 isLoading ? showLoader() : hideLoader()
             }
             .store(in: &cancellable)
@@ -85,14 +92,6 @@ class MoviesViewController: UIViewController {
             .store(in: &cancellable)
         
         viewModel.playingNowMovieListPublisher
-            .receive(on:DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self else {return}
-                movieTableView.reloadData()
-            }
-            .store(in: &cancellable)
-        
-        viewModel.upcomingMovieListPublisher
             .receive(on:DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self else {return}
@@ -144,13 +143,4 @@ extension MoviesViewController: DataTransferDelegate {
 }
 
 
-extension MoviesViewController {
-    
-    func showLoader() {
-        activityIndicator.startAnimating()
-    }
 
-    func hideLoader() {
-        activityIndicator.stopAnimating()
-    }
-}

@@ -21,8 +21,8 @@ class MovieViewModel {
     @Published private var upcomingMovieList = [MovieListEntity]()
     @Published private var movietype: MovieType = .popular
     @Published var loadedImage: Data?
-    @Published private var isLoading = false
-    @Published private var errorMessage = ""
+    @Published private var isLoading: Bool?
+    @Published private var errorMessage: String?
 
 
     var coordinator: MovieCoordinator!
@@ -43,12 +43,12 @@ extension MovieViewModel: MovieViewModelInputType {
 
 extension MovieViewModel: MovieViewModelOutputType {
     
-    var errorMessagePublisher: AnyPublisher<String, Never> {
+    var errorMessagePublisher: AnyPublisher<String?, Never> {
         $errorMessage
             .eraseToAnyPublisher()
     }
     
-    var isLoadingPublisher: AnyPublisher<Bool, Never> {
+    var isLoadingPublisher: AnyPublisher<Bool?, Never> {
         $isLoading
             .eraseToAnyPublisher()
     }

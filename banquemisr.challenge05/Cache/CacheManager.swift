@@ -56,6 +56,8 @@ class CacheManager {
     func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+    
+    
 
 }
 

@@ -10,22 +10,7 @@ import Combine
 import NetworkService
 import UIKit
 
-enum MovieType: Int{
-    case popular = 0
-    case playingNow = 1
-    case upcoming = 2
-    
-    var title: String {
-        switch self {
-        case .popular:
-            return "Popular Movies"
-        case .playingNow:
-            return "Playing Now Movies"
-        case .upcoming:
-            return "Upcoming  Movies"
-        }
-    }
-}
+
 
 class MovieViewModel {
     
@@ -37,7 +22,7 @@ class MovieViewModel {
     @Published private var movietype: MovieType = .popular
     @Published var loadedImage: Data?
     @Published private var isLoading = false
-
+    @Published private var errorMessage = ""
 
 
     var coordinator: MovieCoordinator!
@@ -57,6 +42,11 @@ extension MovieViewModel: MovieViewModelInputType {
 }
 
 extension MovieViewModel: MovieViewModelOutputType {
+    
+    var errorMessagePublisher: AnyPublisher<String, Never> {
+        $errorMessage
+            .eraseToAnyPublisher()
+    }
     
     var isLoadingPublisher: AnyPublisher<Bool, Never> {
         $isLoading
@@ -105,7 +95,7 @@ extension MovieViewModel: MovieViewModelOutputType {
                 isLoading = false
             } catch let error as ApiErrorModel{
                 isLoading = false
-                print(error)
+                errorMessage = error.statusMessage ?? "something went wrong try again"
 
             }
         }
@@ -120,7 +110,7 @@ extension MovieViewModel: MovieViewModelOutputType {
                 
             } catch let error as ApiErrorModel{
                 isLoading = false
-                print(error)
+                errorMessage = error.statusMessage ?? "something went wrong try again"
             }
         }
     }
@@ -134,7 +124,7 @@ extension MovieViewModel: MovieViewModelOutputType {
                 
              } catch let error as ApiErrorModel{
                  isLoading = false
-                 print(error)
+                 errorMessage = error.statusMessage ?? "something went wrong try again"
             }
         }
     }

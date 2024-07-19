@@ -20,10 +20,10 @@ struct MovieUseCase: MovieUseCaseContract {
         let connectivityStatus = await Reachability.checkNetworkConnectivity()
         if connectivityStatus.isConnected {
             let model = try await movieRepo.getPopularMovies()
-            CacheManager.shared.saveToFile(model, fileName: "popular-Movies.json")
+            saveMovieData(from: model, fileName: "popular-Movies.json")
             return Mapper.converMovieDTO(model)
         }else {
-            guard let retrievedData: MovieDTO = CacheManager.shared.retrieveFromFile(fileName: "playing-now-Movies.json", as: MovieDTO.self) else {
+            guard let retrievedData: MovieDTO = CacheManager.shared.retrieveFromFile(fileName: "popular-Movies.json", as: MovieDTO.self) else {
                 return nil
             }
             return Mapper.converMovieDTO(retrievedData)
@@ -34,7 +34,7 @@ struct MovieUseCase: MovieUseCaseContract {
         let connectivityStatus = await Reachability.checkNetworkConnectivity()
         if connectivityStatus.isConnected {
             let model = try await movieRepo.getNowPlayingMovies()
-            CacheManager.shared.saveToFile(model, fileName: "playing-now-Movies.json")
+            saveMovieData(from: model, fileName: "playing-now-Movies.json")
             return Mapper.converMovieDTO(model)
             
         }else {
@@ -50,7 +50,7 @@ struct MovieUseCase: MovieUseCaseContract {
         let connectivityStatus = await Reachability.checkNetworkConnectivity()
         if connectivityStatus.isConnected {
             let model = try await movieRepo.getUpcomingMovies()
-            CacheManager.shared.saveToFile(model, fileName: "upcoming-Movies.json")
+            saveMovieData(from: model, fileName: "upcoming-Movies.json")
             return Mapper.converMovieDTO(model)
             
         }else {
@@ -65,5 +65,23 @@ struct MovieUseCase: MovieUseCaseContract {
     func loadImage(url: URL) async throws -> Data {
         return try await movieRepo.loadImage(url: url)
     }
+    
+    private func isCurrentMovieDifferent(from currentMovie: MovieDTO, fileName: String) -> Bool {
+        guard let savedMovies = CacheManager.shared.retrieveFromFile(fileName: fileName, as: MovieDTO.self) else {
+            return true
+        }
+        let current = currentMovie.results ?? []
+        let saved = savedMovies.results ?? []
+        return !(saved.contains(current))
+    }
+    
+    private func saveMovieData(from model: MovieDTO, fileName: String) {
+        if isCurrentMovieDifferent(from: model, fileName: fileName){
+            CacheManager.shared.deleteFromFile(fileName: fileName)
+            CacheManager.shared.saveToFile(model, fileName: fileName)
+        }
+    }
+    
+    
     
 }

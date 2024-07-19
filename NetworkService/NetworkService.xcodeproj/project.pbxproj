@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0407EDB22C4AE82400C714E9 /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407EDB12C4AE82400C714E9 /* Mockable.swift */; };
 		046B98D32C46E220008EE218 /* NetworkService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 046B98D22C46E220008EE218 /* NetworkService.docc */; };
 		046B98D92C46E221008EE218 /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 046B98CE2C46E220008EE218 /* NetworkService.framework */; };
 		046B98DE2C46E221008EE218 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046B98DD2C46E221008EE218 /* NetworkServiceTests.swift */; };
@@ -32,7 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0407EDB12C4AE82400C714E9 /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
 		046B98CE2C46E220008EE218 /* NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B98D12C46E220008EE218 /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
 		046B98D22C46E220008EE218 /* NetworkService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = NetworkService.docc; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				046B98EA2C46E28F008EE218 /* MockApiClient.swift */,
 				046B98D12C46E220008EE218 /* NetworkService.h */,
 				046B98D22C46E220008EE218 /* NetworkService.docc */,
-				0407EDB12C4AE82400C714E9 /* Mockable.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -225,7 +222,6 @@
 				046B98EF2C46E291008EE218 /* MockApiClient.swift in Sources */,
 				046B98EE2C46E291008EE218 /* ApiErrorModel.swift in Sources */,
 				046B98ED2C46E291008EE218 /* EndPointProvider.swift in Sources */,
-				0407EDB22C4AE82400C714E9 /* Mockable.swift in Sources */,
 				046B98F12C46E291008EE218 /* HttpClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

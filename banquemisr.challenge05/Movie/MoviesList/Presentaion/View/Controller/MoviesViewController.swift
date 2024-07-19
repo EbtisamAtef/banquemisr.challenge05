@@ -14,6 +14,8 @@ class MoviesViewController: UIViewController {
     
     let viewModel: MovieViewModelType
     private var cancellable = Set<AnyCancellable>()
+    private var activityIndicator: UIActivityIndicatorView!
+
     
     init(viewModel: MovieViewModelType) {
         self.viewModel = viewModel
@@ -30,10 +32,18 @@ class MoviesViewController: UIViewController {
     }
     
     private func setup() {
+        setupActivityIndicator()
         setupTableView()
         setupViewModel()
         bindViewModel()
     }
+    
+    private func setupActivityIndicator() {
+           activityIndicator = UIActivityIndicatorView(style: .large)
+           activityIndicator.center = view.center
+           activityIndicator.hidesWhenStopped = true
+           view.addSubview(activityIndicator)
+       }
     
     private func setupTableView() {
         movieTableView.delegate = self
@@ -49,6 +59,14 @@ class MoviesViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        
+        viewModel.isLoadingPublisher
+            .receive(on:DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let self else {return}
+                isLoading ? showLoader() : hideLoader()
+            }
+            .store(in: &cancellable)
         
         viewModel.movieTypePublisher
             .receive(on:DispatchQueue.main)
@@ -123,4 +141,16 @@ extension MoviesViewController: DataTransferDelegate {
         viewModel.setMovitype(data)
     }
     
+}
+
+
+extension MoviesViewController {
+    
+    func showLoader() {
+        activityIndicator.startAnimating()
+    }
+
+    func hideLoader() {
+        activityIndicator.stopAnimating()
+    }
 }

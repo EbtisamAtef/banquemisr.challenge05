@@ -35,7 +35,9 @@ class MovieViewModel {
     @Published private var playingNowMovieList = [MovieListEntity]()
     @Published private var upcomingMovieList = [MovieListEntity]()
     @Published private var movietype: MovieType = .popular
-    @Published var loadedImage: Data? = nil
+    @Published var loadedImage: Data?
+    @Published private var isLoading = false
+
 
 
     var coordinator: MovieCoordinator!
@@ -55,6 +57,12 @@ extension MovieViewModel: MovieViewModelInputType {
 }
 
 extension MovieViewModel: MovieViewModelOutputType {
+    
+    var isLoadingPublisher: AnyPublisher<Bool, Never> {
+        $isLoading
+            .eraseToAnyPublisher()
+    }
+    
     var movieTypePublisher: AnyPublisher<MovieType, Never> {
         $movietype
             .eraseToAnyPublisher()
@@ -81,6 +89,7 @@ extension MovieViewModel: MovieViewModelOutputType {
     }
     
     func featchMovieType() {
+        isLoading = true
         switch movietype {
         case .popular: getPopularMovies()
         case .playingNow: getNowPlayingMovies()
@@ -93,7 +102,9 @@ extension MovieViewModel: MovieViewModelOutputType {
             do {
                 let movie = try await usecase.getPopularMovies()
                 popularMovieList = movie?.results ?? []
+                isLoading = false
             } catch let error as ApiErrorModel{
+                isLoading = false
                 print(error)
 
             }
@@ -105,7 +116,10 @@ extension MovieViewModel: MovieViewModelOutputType {
             do {
                 let movie = try await usecase.getNowPlayingMovies()
                 playingNowMovieList = movie?.results ?? []
+                isLoading = false
+                
             } catch let error as ApiErrorModel{
+                isLoading = false
                 print(error)
             }
         }
@@ -116,7 +130,10 @@ extension MovieViewModel: MovieViewModelOutputType {
             do {
                 let movie = try await usecase.getUpcomingMovies()
                 upcomingMovieList = movie?.results ?? []
+                isLoading = false
+                
              } catch let error as ApiErrorModel{
+                 isLoading = false
                  print(error)
             }
         }
@@ -126,7 +143,7 @@ extension MovieViewModel: MovieViewModelOutputType {
         Task {
             do {
                 let data = try await usecase.loadImage(url: url)
-                //DispatchQueue.main.async {
+               // DispatchQueue.main.async {
                     loadedImage = data
                 //}
             } catch let error as ApiErrorModel{

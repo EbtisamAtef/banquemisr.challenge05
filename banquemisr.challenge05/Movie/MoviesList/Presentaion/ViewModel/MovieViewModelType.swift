@@ -20,6 +20,7 @@ protocol MovieViewModelOutputType {
     var upcomingMovieListPublisher: AnyPublisher<[MovieListEntity], Never> { get }
     var movieTypePublisher: AnyPublisher<MovieType, Never> { get }
     var loadedImagePublisher: AnyPublisher<Data?, Never> { get }
+    var isLoadingPublisher: AnyPublisher<Bool, Never> { get }
     var loadedImage: Data? { get }
 
     

@@ -21,7 +21,6 @@ public protocol EndPointProvider {
     var queryItems: [URLQueryItem]? { get }
     var body: [String: Any]? { get }
     var mockFile: String? { get }
-    var bundle: Bundle? { get }
 
 }
 
@@ -31,7 +30,9 @@ public extension EndPointProvider {
     
     var body: [String : Any]? { nil }
     
-    var bundle: Bundle? { nil }
+    var bundle: Bundle? {
+        Bundle(identifier: "com.Ebtisam.banquemisr-challenge05") ?? Bundle()
+    }
     
     var baseURL: String { ApiConfig.shared.baseUrl }
     

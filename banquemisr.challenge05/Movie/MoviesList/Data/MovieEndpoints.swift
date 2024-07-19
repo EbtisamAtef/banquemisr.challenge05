@@ -30,10 +30,14 @@ enum MovieEndpoints: EndPointProvider {
     
     var mockFile: String? {
         switch self {
-            case .getPopularMovies: return ""
-            case .getNowPlayingMovies: return ""
-            case .getUpcomingMovies: return ""
-            }
+        case .getPopularMovies: return "popular-movies"
+        case .getNowPlayingMovies: return "playing-now-movies"
+        case .getUpcomingMovies: return "upcoming-movies"
         }
-    
     }
+    
+    var bundle: Bundle {
+        return Bundle(identifier: "com.Ebtisam.banquemisr-challenge05") ?? Bundle()
+    }
+    
+}

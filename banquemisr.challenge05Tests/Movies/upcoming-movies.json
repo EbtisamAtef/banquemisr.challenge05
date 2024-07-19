@@ -1,0 +1,85 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/8fNBsXpgMvqk75SPsZzTmIqSRxY.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 646683,
+      "original_language": "en",
+      "original_title": "The Exorcism",
+      "overview": "A troubled actor begins to unravel while shooting a supernatural horror film, leading his estranged daughter to wonder if he's slipping back into his past addictions or if there's something more sinister at play.",
+      "popularity": 1038.017,
+      "poster_path": "/ar2h87jlTfMlrDZefR3VFz1SfgH.jpg",
+      "release_date": "2024-05-30",
+      "title": "The Exorcism",
+      "video": false,
+      "vote_average": 4.391,
+      "vote_count": 69
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dvBCdCohwWbsP5qAaglOXagDMtk.jpg",
+      "genre_ids": [
+        878,
+        28,
+        35
+      ],
+      "id": 533535,
+      "original_language": "en",
+      "original_title": "Deadpool & Wolverine",
+      "overview": "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine.",
+      "popularity": 736.893,
+      "poster_path": "/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+      "release_date": "2024-07-24",
+      "title": "Deadpool & Wolverine",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7aPrv2HFssWcOtpig5G3HEVk3uS.jpg",
+      "genre_ids": [
+        28,
+        12,
+        53
+      ],
+      "id": 718821,
+      "original_language": "en",
+      "original_title": "Twisters",
+      "overview": "As storm season intensifies, the paths of former storm chaser Kate Carter and reckless social-media superstar Tyler Owens collide when terrifying phenomena never seen before are unleashed. The pair and their competing teams find themselves squarely in the paths of multiple storm systems converging over central Oklahoma in the fight of their lives.",
+      "popularity": 626.497,
+      "poster_path": "/pjnD08FlMAIXsfOLKQbvmO0f0MD.jpg",
+      "release_date": "2024-07-10",
+      "title": "Twisters",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 87
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/buawWBeKYjYfeiPoS2jIcjOrghZ.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1214509,
+      "original_language": "en",
+      "original_title": "In a Violent Nature",
+      "overview": "The enigmatic resurrection, rampage, and retribution of an undead monster in a remote wilderness unleashes an iconic new killer after a locket is removed from a collapsed fire tower that entombed its rotting corpse.",
+      "popularity": 599.375,
+      "poster_path": "/hPfWHgq07nXbeldwEGxWB4JqwtE.jpg",
+      "release_date": "2024-05-31",
+      "title": "In a Violent Nature",
+      "video": false,
+      "vote_average": 5.8,
+      "vote_count": 115
+    },
+  ],
+  "total_pages": 38,
+  "total_results": 750
+}

@@ -13,21 +13,25 @@ import Network
 public protocol HttpClientProtocol {
     func performRequest<T: Decodable>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T
     func loadImageData(from url: URL) async throws -> Data
-
+    
 }
 
 public final class HttpClient: HttpClientProtocol {
-
     
-    public init() {}
+    var session: URLSession
     
-    var session: URLSession {
+    public convenience init() {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         configuration.timeoutIntervalForRequest = 60
         configuration.timeoutIntervalForResource = 300
-        return URLSession(configuration: configuration)
+        self.init(session: URLSession(configuration: configuration))
     }
+    
+    public init(session: URLSession) {
+        self.session = session
+    }
+    
     
     public func performRequest<T: Decodable>(endpoint: EndPointProvider, responseModel: T.Type) async throws -> T {
         let connectivityStatus = await Reachability.checkNetworkConnectivity()
@@ -48,7 +52,7 @@ public final class HttpClient: HttpClientProtocol {
     }
     
     public func loadImageData(from url: URL) async throws -> Data {
-
+        
         do {
             let request = URLRequest(url: url)
             let (data, _) = try await URLSession.shared.data(for: request)
@@ -59,10 +63,10 @@ public final class HttpClient: HttpClientProtocol {
                 statusMessage: "falied to download image",
                 success: false
             )
-
+            
             throw apiError
         }
-
+        
     }
     
     
@@ -102,7 +106,7 @@ public final class HttpClient: HttpClientProtocol {
         }
     }
     
-   
+    
 }
 
 

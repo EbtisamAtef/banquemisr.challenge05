@@ -61,30 +61,10 @@ struct MovieUseCase: MovieUseCaseContract {
                 return nil
             }
             return Mapper.converMovieDTO(retrievedData)
-            
         }
     }
     
     func loadImage(url: URL) async throws -> Data {
         return try await movieRepo.loadImage(url: url)
     }
-    
-    private func saveMovieData(from model: MovieDTO, fileName: String) {
-        if isCurrentMovieDifferent(from: model, fileName: fileName){
-            CacheManager.shared.deleteFromFile(fileName: fileName)
-            CacheManager.shared.saveToFile(model, fileName: fileName)
-        }
-    }
-    
-    private func isCurrentMovieDifferent(from currentMovie: MovieDTO, fileName: String) -> Bool {
-        guard let savedMovies = CacheManager.shared.retrieveFromFile(fileName: fileName, as: MovieDTO.self) else {
-            return true
-        }
-        let current = currentMovie.results ?? []
-        let saved = savedMovies.results ?? []
-        return !(saved.contains(current))
-    }
-    
-    
-    
 }

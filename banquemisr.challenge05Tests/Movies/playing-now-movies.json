@@ -1,0 +1,50 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/Akv9GlCCMrzcDkVz4ad8MdLl9DK.jpg",
+      "genre_ids": [
+        16,
+        35,
+        10751,
+        12
+      ],
+      "id": 748783,
+      "original_language": "en",
+      "original_title": "The Garfield Movie",
+      "overview": "Garfield, the world-famous, Monday-hating, lasagna-loving indoor cat, is about to have a wild outdoor adventure! After an unexpected reunion with his long-lost father – scruffy street cat Vic – Garfield and his canine friend Odie are forced from their perfectly pampered life into joining Vic in a hilarious, high-stakes heist.",
+      "popularity": 2437.699,
+      "poster_path": "/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg",
+      "release_date": "2024-04-30",
+      "title": "The Garfield Movie",
+      "video": false,
+      "vote_average": 7.271,
+      "vote_count": 475
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dn3gbDpXPSwC6saMJOHkCiFA9jn.jpg",
+      "genre_ids": [
+        14,
+        12,
+        10751,
+        35
+      ],
+      "id": 974262,
+      "original_language": "en",
+      "original_title": "Descendants: The Rise of Red",
+      "overview": "After the Queen of Hearts incites a coup on Auradon, her rebellious daughter Red and Cinderella's perfectionist daughter Chloe join forces and travel back in time to try to undo the traumatic event that set Red's mother down her villainous path.",
+      "popularity": 1788.034,
+      "poster_path": "/dwxWNJ9oDLqNPbA0884h5J7mfqy.jpg",
+      "release_date": "2024-07-11",
+      "title": "Descendants: The Rise of Red",
+      "video": false,
+      "vote_average": 7.294,
+      "vote_count": 143
+    },
+    
+  ],
+  "total_pages": 183,
+  "total_results": 3648
+}

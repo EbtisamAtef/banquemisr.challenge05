@@ -24,15 +24,15 @@ class MovieViewModel {
     @Published private var errorMessage: String?
     
         
-    private let coordinator: MovieCoordinator
+    private let coordinator: MovieCoordinator?
     
-    init(usecase: MovieUseCaseContract, coordinator: MovieCoordinator) {
+    init(usecase: MovieUseCaseContract, coordinator: MovieCoordinator?) {
         self.usecase = usecase
         self.coordinator = coordinator
     }
     
     func navigateToMovieDetails(movieDetails: MovieListEntity) {
-        coordinator.navigateToMovieDetails(with: movieDetails)
+        coordinator?.navigateToMovieDetails(with: movieDetails)
     }
     
     private func fetchMovies(

@@ -9,7 +9,6 @@ import Foundation
 
 
 struct MovieEntity {
-    
     var page: Int?
     var results: [MovieListEntity]?
 }
@@ -21,6 +20,7 @@ struct MovieListEntity {
     var id, voteCount: Int?
     var backdropPath, originalLanguage, originalTitle, overview, posterPath, releaseDate, title: String?
     var popularity, voteAverage: Double?
+    var url: Data?
     
 }
 

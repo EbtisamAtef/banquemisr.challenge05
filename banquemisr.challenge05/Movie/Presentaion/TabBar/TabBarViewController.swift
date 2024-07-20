@@ -9,13 +9,15 @@ import UIKit
 import NetworkService
 
 protocol DataTransferDelegate: AnyObject {
-    func transferData(data: MovieType)
+    func updateSelectedItem(item: MovieType)
 }
 
 class TabBarViewController: UITabBarController {
     
+    // MARK: - Proprties
     private let coordinator: MovieCoordinator
     
+    // MARK: - Init
     init(coordinator: MovieCoordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -25,8 +27,7 @@ class TabBarViewController: UITabBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle
-    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -82,7 +83,7 @@ extension TabBarViewController : UITabBarControllerDelegate {
         let selectedTabBarItem = MovieType(rawValue: tabBarController.selectedIndex) ?? .popular
         title = selectedTabBarItem.title
         if let dataTransfer = viewController as? DataTransferDelegate {
-            dataTransfer.transferData(data: selectedTabBarItem)
+            dataTransfer.updateSelectedItem(item: selectedTabBarItem)
         }
     }
 }

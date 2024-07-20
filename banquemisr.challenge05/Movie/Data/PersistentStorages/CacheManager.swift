@@ -14,7 +14,6 @@ class CacheManager {
     
     private init() {}
     
-
     func saveToFile<T: Codable>(_ object: T, fileName: String) {
         let encoder = JSONEncoder()
         do {
@@ -40,7 +39,6 @@ class CacheManager {
         }
         
     }
-    
 
     func deleteFromFile(fileName: String) {
         let fileURL = getDocumentsDirectory().appendingPathComponent(fileName)
@@ -52,12 +50,8 @@ class CacheManager {
         }
     }
 
-
     func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
-    
-    
-
 }
 

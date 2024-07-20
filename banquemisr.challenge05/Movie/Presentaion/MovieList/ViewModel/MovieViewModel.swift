@@ -13,8 +13,7 @@ import UIKit
 
 class MovieViewModel {
     
-    private var usecase: MovieUseCaseContract
-    
+    // MARK: - Properties
     @Published private var popularMovieList: [MovieListEntity] = []
     @Published private var playingNowMovieList: [MovieListEntity] = []
     @Published private var upcomingMovieList: [MovieListEntity] = []
@@ -22,9 +21,10 @@ class MovieViewModel {
     @Published private var isLoading: Bool?
     @Published private var errorMessage: String?
     
-        
     private let coordinator: MovieCoordinator?
+    private var usecase: MovieUseCaseContract
     
+    // MARK: - Init
     init(usecase: MovieUseCaseContract, coordinator: MovieCoordinator?) {
         self.usecase = usecase
         self.coordinator = coordinator
@@ -63,13 +63,16 @@ class MovieViewModel {
             }
         }
     }
-    
 }
 
+// MARK: - Inputs
 extension MovieViewModel: MovieViewModelInputType {
-    
+    func updateSelectedMovitype(_ type: MovieType) {
+        movietype = type
+    }
 }
 
+// MARK: - Outputs
 extension MovieViewModel: MovieViewModelOutputType {
     
     var errorMessagePublisher: AnyPublisher<String?, Never> {
@@ -151,11 +154,5 @@ extension MovieViewModel: MovieViewModelOutputType {
         case .upcoming: return upcomingMovieList[index]
         }
     }
-    
-    func setupSelectedMovitype(_ type: MovieType) {
-        movietype = type
-    }
-    
-    
 }
 

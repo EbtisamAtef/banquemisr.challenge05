@@ -10,7 +10,7 @@ import UIKit
 struct MovieCoordinator: Coordinator {
     
     var navigationController: UINavigationController
-    var window: UIWindow
+    let window: UIWindow
     
     init(window: UIWindow) {
         self.window = window
@@ -29,8 +29,4 @@ struct MovieCoordinator: Coordinator {
         let controller = MovieDetailsViewController(viewModel: viewModel)
         navigationController.pushViewController(controller, animated: true)
     }
-    
-    
-    
-    
 }

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIView {
     public static var reusableIdentifier: String {
         String(describing: Self.self)

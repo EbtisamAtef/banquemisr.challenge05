@@ -11,7 +11,7 @@ import NetworkService
 
 struct MovieRepository: MovieContract {
     
-    let apiClient: HttpClientProtocol
+    private let apiClient: HttpClientProtocol
     
     init(apiClient: HttpClientProtocol) {
         self.apiClient = apiClient
@@ -35,5 +35,4 @@ struct MovieRepository: MovieContract {
     func loadImage(url: URL) async throws -> Data  {
         return try await apiClient.loadImageData(from: url)
     }
-    
 }

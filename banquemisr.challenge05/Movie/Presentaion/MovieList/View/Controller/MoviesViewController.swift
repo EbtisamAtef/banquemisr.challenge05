@@ -10,12 +10,14 @@ import Combine
 
 class MoviesViewController: BaseViewController {
     
+    // MARK: - Outlets
     @IBOutlet private weak var movieTableView: UITableView!
     
-    let viewModel: MovieViewModelType
+    // MARK: - Properties
+    private let viewModel: MovieViewModelType
     private var cancellable = Set<AnyCancellable>()
-
     
+    // MARK: - Init
     init(viewModel: MovieViewModelType) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -25,24 +27,29 @@ class MoviesViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     private func setup() {
         setupActivityIndicator()
         setupTableView()
-        setupViewModel()
+        viewModel.getPopularMovies()
         bindViewModel()
     }
-    
+}
+
+// MARK: - Setup UI
+extension MoviesViewController {
+
     private func setupActivityIndicator() {
-           activityIndicator = UIActivityIndicatorView(style: .large)
-           activityIndicator.center = view.center
-           activityIndicator.hidesWhenStopped = true
-           view.addSubview(activityIndicator)
-       }
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+    }
     
     private func setupTableView() {
         movieTableView.delegate = self
@@ -51,19 +58,16 @@ class MoviesViewController: BaseViewController {
                                       bundle: nil),
                                 forCellReuseIdentifier: MovieTableViewCell.reusableIdentifier)
     }
-    
-    private func setupViewModel() {
-        viewModel.getPopularMovies()
-        
-    }
-    
+}
+
+// MARK: - Bind View Model
+extension MoviesViewController {
     private func bindViewModel() {
-        
         viewModel.errorMessagePublisher
             .receive(on:DispatchQueue.main)
             .sink { [weak self] message in
                 guard let self , let message else {return}
-                showErrorAlert(on: self, message: message)
+                showAlert(with: message)
             }
             .store(in: &cancellable)
         
@@ -77,7 +81,7 @@ class MoviesViewController: BaseViewController {
         
         viewModel.movieTypePublisher
             .receive(on:DispatchQueue.main)
-            .sink { [weak self] movieType in
+            .sink { [weak self] _ in
                 guard let self else {return}
                 viewModel.featchMovieType()
             }
@@ -85,8 +89,8 @@ class MoviesViewController: BaseViewController {
         
         viewModel.popularMovieListPublisher
             .receive(on:DispatchQueue.main)
-            .sink { [weak self] movies in
-                guard let self  else {return}
+            .sink { [weak self] _ in
+                guard let self else {return}
                 movieTableView.reloadData()
             }
             .store(in: &cancellable)
@@ -106,11 +110,10 @@ class MoviesViewController: BaseViewController {
                 movieTableView.reloadData()
             }
             .store(in: &cancellable)
-        
     }
-    
 }
 
+// MARK: - Table View Delegate & Data Source
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,14 +132,12 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         let movieDetails = viewModel.getMovieDetails(index: indexPath.row)
         viewModel.navigateToMovieDetails(movieDetails: movieDetails)
     }
-    
 }
 
 extension MoviesViewController: DataTransferDelegate {
-    func transferData(data: MovieType) {
-        viewModel.setupSelectedMovitype(data)
+    func updateSelectedItem(item: MovieType) {
+        viewModel.updateSelectedMovitype(item)
     }
-    
 }
 
 

@@ -17,21 +17,21 @@ protocol MovieUseCaseContract {
 }
 
 extension MovieUseCaseContract {
-
-func saveMovieData(from model: MovieDTO, fileName: String) {
-    if isCurrentMovieDifferent(from: model, fileName: fileName){
-        CacheManager.shared.deleteFromFile(fileName: fileName)
-        CacheManager.shared.saveToFile(model, fileName: fileName)
+    
+    func saveMovieData(from model: MovieDTO, fileName: String) {
+        if isCurrentMovieDifferent(from: model, fileName: fileName){
+            CacheManager.shared.deleteFromFile(fileName: fileName)
+            CacheManager.shared.saveToFile(model, fileName: fileName)
+        }
     }
-}
-
-func isCurrentMovieDifferent(from currentMovie: MovieDTO, fileName: String) -> Bool {
-    guard let savedMovies = CacheManager.shared.retrieveFromFile(fileName: fileName, as: MovieDTO.self) else {
-        return true
+    
+    func isCurrentMovieDifferent(from currentMovie: MovieDTO, fileName: String) -> Bool {
+        guard let savedMovies = CacheManager.shared.retrieveFromFile(fileName: fileName, as: MovieDTO.self) else {
+            return true
+        }
+        let current = currentMovie.results ?? []
+        let saved = savedMovies.results ?? []
+        return !(saved.contains(current))
     }
-    let current = currentMovie.results ?? []
-    let saved = savedMovies.results ?? []
-    return !(saved.contains(current))
-}
 }
 

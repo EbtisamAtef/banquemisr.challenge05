@@ -9,6 +9,7 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet private weak var movieDetailsContainerView: UIView!
     @IBOutlet private weak var movieImageView: UIImageView!
     @IBOutlet private weak var movieTitleLabel: UILabel!
@@ -16,8 +17,10 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var movieVoteAverageLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
     
-    var viewModel: MovieDetailsViewModel
+    // MARK: - Properties
+    private let viewModel: MovieDetailsViewModel
     
+    // MARK: - Init
     init(viewModel: MovieDetailsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -27,11 +30,15 @@ class MovieDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+}
+
+// MARK: - Setup UI
+extension MovieDetailsViewController {
     private func setup() {
         setupAppearance()
         setupMovieDetailsData()
@@ -50,7 +57,4 @@ class MovieDetailsViewController: UIViewController {
         guard let urlData = viewModel.movieDetails.url else { return }
         movieImageView.image = UIImage(data: urlData)
     }
-
-
-
 }

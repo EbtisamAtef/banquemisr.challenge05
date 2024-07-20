@@ -9,7 +9,7 @@ import Foundation
 
 class MovieDetailsViewModel {
     
-    var movieDetails: MovieListEntity
+    let movieDetails: MovieListEntity
 
     init(movieDetails: MovieListEntity) {
         self.movieDetails = movieDetails

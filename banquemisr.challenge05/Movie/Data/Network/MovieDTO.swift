@@ -13,7 +13,7 @@ struct MovieDTO: Codable, Equatable {
     var results: [MovieList]?
 }
 
-struct MovieList: Codable , Equatable{
+struct MovieList: Codable , Equatable {
     var adult, video: Bool?
     var genre_ids: [Int]?
     var id, vote_count: Int?

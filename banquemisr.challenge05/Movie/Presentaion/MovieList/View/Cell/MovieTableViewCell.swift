@@ -30,6 +30,4 @@ class MovieTableViewCell: UITableViewCell {
         guard let urlData = data.url else { return }
         movieImageView.image = UIImage(data: urlData)
     }
-
-   
 }

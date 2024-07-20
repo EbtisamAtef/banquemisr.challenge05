@@ -11,7 +11,6 @@ import NetworkService
 import UIKit
 
 
-
 class MovieViewModel {
     
     private var usecase: MovieUseCaseContract
